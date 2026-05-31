@@ -19,7 +19,7 @@ const stats = [
 export default function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement[]>([])
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -27,35 +27,30 @@ export default function StatsSection() {
   useEffect(() => {
     const section = sectionRef.current
     const track = trackRef.current
-    const title = titleRef.current
     const progress = progressRef.current
     const cards = cardsRef.current
 
-    if (!section || !track || !title || !progress || cards.length === 0) return
+    if (!section || !track || !progress || cards.length === 0) return
 
     const ctx = gsap.context(() => {
-      const chars = title.textContent?.split('') || []
-      title.textContent = ''
-      const charSpans = chars.map((char) => {
-        const span = document.createElement('span')
-        span.textContent = char === ' ' ? '\u00A0' : char
-        span.style.opacity = '0'
-        span.style.display = 'inline-block'
-        title.appendChild(span)
-        return span
-      })
-
-      gsap.to(charSpans, {
-        opacity: 1,
-        duration: 0.05,
-        stagger: 0.04,
-        ease: 'power1.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top center',
-          toggleActions: 'play none none reverse',
-        },
-      })
+      const lines = titleRef.current?.querySelectorAll('h2')
+      if (!lines) return
+      gsap.fromTo(
+        lines,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top center',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
 
       gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth),
@@ -108,12 +103,14 @@ export default function StatsSection() {
       <div className="h-[75vh] flex items-center">
         <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
           <div className="shrink-0">
-            <h2
-              ref={titleRef}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight whitespace-nowrap"
-            >
-              Datos que nos respaldan
-            </h2>
+            <div ref={titleRef}>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                Datos que nos
+              </h2>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight -mt-2">
+                respaldan
+              </h2>
+            </div>
             <p className="mt-4 text-base text-gray-400 max-w-sm">
               Resultados que hablan por sí solos. Conocé el impacto de nuestra plataforma.
             </p>
