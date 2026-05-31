@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Shield, BarChart3, Users, Clock } from 'lucide-react'
 import ClientLogos from '@/components/ClientLogos'
-import MetricsBar from '@/components/MetricsBar'
+import StatsSection from '@/components/StatsSection'
 import Differentiators from '@/components/Differentiators'
 import SolutionsGrid from '@/components/SolutionsGrid'
 import SectorsGrid from '@/components/SectorsGrid'
@@ -117,7 +117,7 @@ export default function HomePage() {
 
       <Differentiators />
 
-      <MetricsBar />
+      <StatsSection />
 
       <SolutionsGrid />
 
