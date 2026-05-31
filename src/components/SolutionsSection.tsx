@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import gsap from 'gsap'
@@ -22,21 +22,24 @@ const solutionIcons = [
   IconBuildingCommunity,
 ]
 
+const COLLAPSED = 62
+const GAP = 8
+const CONTENT_PX = 1104 // 1200 - 48*2
+const EXPANDED = CONTENT_PX - 3 * COLLAPSED - 3 * GAP // ~894
+
 export default function SolutionsSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
-  const cardsRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = cardsRef.current.filter(Boolean)
       gsap.fromTo(
-        cards,
+        sectionRef.current,
         { opacity: 0, y: 60 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.2,
+          duration: 0.8,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -52,8 +55,8 @@ export default function SolutionsSection() {
 
   return (
     <section ref={sectionRef} className="bg-cream py-20 sm:py-28 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-14">
+      <div className="mx-auto max-w-7xl px-12">
+        <div className="mb-14 flex items-end justify-between">
           <div>
             <span className="text-sm font-semibold text-primary tracking-widest uppercase">
               Nuestras soluciones
@@ -66,7 +69,7 @@ export default function SolutionsSection() {
           </div>
           <Link
             href="/soluciones"
-            className="hidden sm:inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-colors group"
+            className="hidden sm:inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-colors group shrink-0"
           >
             Ver todas
             <svg
@@ -84,66 +87,104 @@ export default function SolutionsSection() {
           </Link>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {solutions.map((solution, i) => {
+        <div
+          className="flex gap-2 h-[480px]"
+          onMouseLeave={() => setActiveIndex(0)}
+        >
+          {solutions.slice(0, 4).map((solution, i) => {
             const Icon = solutionIcons[i]
+            const isActive = activeIndex === i
+
             return (
               <div
                 key={solution.title}
-                ref={(el) => { if (el) cardsRef.current[i] = el }}
-                className="group flex flex-col sm:flex-row rounded-2xl bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
+                style={{
+                  flex: `0 0 ${isActive ? EXPANDED : COLLAPSED}px`,
+                  height: 480,
+                }}
+                onMouseEnter={() => setActiveIndex(i)}
               >
-                <div className="relative w-full sm:w-48 h-48 sm:h-auto shrink-0 overflow-hidden bg-secondary">
-                  <Image
-                    src={solution.image}
-                    alt={solution.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center">
-                      <Icon size={16} className="text-white" />
-                    </div>
+                <Image
+                  src={solution.image}
+                  alt={solution.title}
+                  fill
+                  className="object-cover"
+                />
+
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 transition-opacity duration-500 ${
+                    isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                  }`}
+                />
+
+                <div
+                  className={`absolute inset-0 flex flex-col items-center justify-between py-5 transition-opacity duration-300 ${
+                    isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                  }`}
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                    <Icon size={18} className="text-white" />
                   </div>
+                  <span
+                    className="text-[10px] font-semibold text-white/70 tracking-[2px] uppercase"
+                    style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+                  >
+                    {solution.title}
+                  </span>
                 </div>
-                <div className="flex-1 p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center sm:hidden">
-                      <Icon size={16} className="text-primary" />
+
+                <div
+                  className={`absolute inset-0 flex transition-opacity duration-500 ${
+                    isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                  }`}
+                >
+                  <div className="relative w-[46%] h-full overflow-hidden">
+                    <Image
+                      src={solution.image}
+                      alt={solution.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+                  </div>
+
+                  <div className="w-[54%] bg-secondary p-[26px_22px] flex flex-col justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                      <Icon size={20} className="text-primary" />
                     </div>
-                    <h3 className="text-lg font-bold text-secondary">
+                    <h3 className="text-2xl font-bold text-white leading-tight mb-3">
                       {solution.title}
                     </h3>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    {solution.description}
-                  </p>
-                  <ul className="space-y-1.5">
-                    {solution.benefits.map((benefit) => (
-                      <li
-                        key={benefit}
-                        className="flex items-center gap-2 text-xs text-gray-500"
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          className="text-primary shrink-0"
+                    <p className="text-sm text-gray-400 leading-relaxed mb-5">
+                      {solution.description}
+                    </p>
+                    <ul className="space-y-2">
+                      {solution.benefits.map((benefit) => (
+                        <li
+                          key={benefit}
+                          className="flex items-center gap-2 text-xs text-gray-300"
                         >
-                          <path
-                            d="M20 6L9 17l-5-5"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="text-primary shrink-0"
+                          >
+                            <path
+                              d="M20 6L9 17l-5-5"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             )
