@@ -105,9 +105,9 @@ export default function StatsSection() {
         />
       </div>
 
-      <div className="h-screen flex items-center">
+      <div className="h-[75vh] flex items-center">
         <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
-          <div className="shrink-0 w-[420px]">
+          <div className="shrink-0 w-[440px]">
             <h2
               ref={titleRef}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight"
@@ -125,7 +125,7 @@ export default function StatsSection() {
               <div
                 key={stat.label}
                 ref={(el) => { if (el) cardsRef.current[i] = el }}
-                className="shrink-0 w-[180px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5 hover:bg-white/10"
+                className="shrink-0 w-[300px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:bg-white/10"
                 style={{
                   transform: hoveredIndex === i ? 'translateY(-7px)' : 'translateY(0)',
                   boxShadow: hoveredIndex === i ? '0 20px 40px rgba(0,0,0,0.28)' : 'none',
@@ -134,8 +134,8 @@ export default function StatsSection() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className={`w-9 h-9 rounded-lg ${stat.iconBg} flex items-center justify-center mb-4`}>
-                  <Icon size={18} className={stat.iconColor} />
+                <div className={`w-12 h-12 rounded-xl ${stat.iconBg} flex items-center justify-center mb-5`}>
+                  <Icon size={22} className={stat.iconColor} />
                 </div>
                 <div className="flex items-baseline gap-0.5">
                   <span
@@ -171,7 +171,7 @@ export default function StatsSection() {
             )
           })}
 
-          <div className="shrink-0 w-[180px] pl-4">
+          <div className="shrink-0 w-[260px] pl-4">
             <div
               className="font-extrabold text-white/10"
               style={{ fontSize: '38px', letterSpacing: '-1px', lineHeight: 1 }}
