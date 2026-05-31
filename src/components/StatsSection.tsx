@@ -33,25 +33,6 @@ export default function StatsSection() {
     if (!section || !track || !progress || cards.length === 0) return
 
     const ctx = gsap.context(() => {
-      const lines = titleRef.current?.querySelectorAll('h2')
-      if (!lines) return
-      gsap.fromTo(
-        lines,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top center',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
-
       gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth),
         ease: 'none',
@@ -100,22 +81,19 @@ export default function StatsSection() {
         />
       </div>
 
-      <div className="h-[75vh] flex items-center">
-        <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
-          <div className="shrink-0">
-            <div ref={titleRef}>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-                Datos que nos
-              </h2>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight -mt-2">
-                respaldan
-              </h2>
-            </div>
-            <p className="mt-4 text-base text-gray-400 max-w-sm">
-              Resultados que hablan por sí solos. Conocé el impacto de nuestra plataforma.
-            </p>
+      <div className="h-[75vh]">
+        <div className="px-16 pt-12 pb-6">
+          <div ref={titleRef}>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+              Datos que nos <span className="text-primary">respaldan</span>
+            </h2>
           </div>
+          <p className="mt-3 text-base text-gray-400">
+            Resultados que hablan por sí solos. Conocé el impacto de nuestra plataforma.
+          </p>
+        </div>
 
+        <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform h-[calc(100%-160px)]">
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (
