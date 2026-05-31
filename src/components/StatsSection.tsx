@@ -81,8 +81,8 @@ export default function StatsSection() {
         />
       </div>
 
-      <div className="h-[75vh]">
-        <div className="px-16 pt-12 pb-6">
+      <div className="h-[75vh] flex flex-col items-center justify-center">
+        <div className="text-center mb-12">
           <div ref={titleRef}>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
               Datos que nos <span className="text-primary">respaldan</span>
@@ -93,7 +93,7 @@ export default function StatsSection() {
           </p>
         </div>
 
-        <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform h-[calc(100%-160px)]">
+        <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
           {stats.map((stat, i) => {
             const Icon = stat.icon
             return (
