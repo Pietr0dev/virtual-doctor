@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { solutions } from '@/lib/data'
 import CTABanner from '@/components/CTABanner'
 
@@ -44,14 +45,14 @@ export default function SolucionesPage() {
                   ))}
                 </ul>
               </div>
-              <div className={`bg-secondary/5 rounded-2xl h-64 sm:h-80 flex items-center justify-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="text-center p-8">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="text-primary mx-auto">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M12 7v10M7 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                  <p className="mt-4 text-sm text-gray-500">Imagen ilustrativa de {solution.title}</p>
-                </div>
+              <div className={`relative overflow-hidden rounded-2xl h-64 sm:h-80 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <Image
+                  src={solution.image!}
+                  alt={solution.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             </div>
           </div>

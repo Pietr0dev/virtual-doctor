@@ -59,6 +59,7 @@ export const solutions = [
     title: 'Telemedicina 24/7',
     description:
       'Consultas médicas por videollamada con profesionales de múltiples especialidades, disponible los 365 días del año.',
+    image: '/images/telemedicina-247.png',
     benefits: [
       'Atención clínica general',
       'Pediatría, ginecología, dermatología',
@@ -70,6 +71,7 @@ export const solutions = [
     title: 'Sala de Espera Virtual',
     description:
       'Contenido audiovisual educativo sobre prevención que se reproduce mientras el paciente espera su atención.',
+    image: '/images/sala-espera-virtual.png',
     benefits: [
       'Campañas de prevención',
       'Educación en salud',
@@ -81,6 +83,7 @@ export const solutions = [
     title: 'Programa de Salud Mental',
     description:
       'Primera escucha psicológica 24/7 con derivación asistida cuando se requiere atención especializada.',
+    image: '/images/salud-mental.png',
     benefits: [
       'Contención emocional inmediata',
       'Primera escucha profesional',
@@ -92,6 +95,7 @@ export const solutions = [
     title: 'Consultorios Virtuales (Tótems)',
     description:
       'Unidades físicas de atención médica virtual instaladas en espacios públicos para patologías leves.',
+    image: '/images/totems.png',
     benefits: [
       'Acceso en lugares remotos',
       'Atención inmediata',
