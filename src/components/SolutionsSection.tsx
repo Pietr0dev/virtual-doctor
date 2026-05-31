@@ -98,36 +98,23 @@ export default function SolutionsSection() {
             return (
               <div
                 key={solution.title}
-                className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
+                className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-in-out bg-secondary"
                 style={{
                   flex: `0 0 ${isActive ? EXPANDED : COLLAPSED}px`,
                   height: 480,
                 }}
                 onMouseEnter={() => setActiveIndex(i)}
               >
-                <Image
-                  src={solution.image}
-                  alt={solution.title}
-                  fill
-                  className="object-cover"
-                />
-
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 transition-opacity duration-500 ${
-                    isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                  }`}
-                />
-
                 <div
                   className={`absolute inset-0 flex flex-col items-center justify-between py-5 transition-opacity duration-300 ${
                     isActive ? 'opacity-0 pointer-events-none' : 'opacity-100'
                   }`}
                 >
-                  <div className="w-9 h-9 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
                     <Icon size={18} className="text-white" />
                   </div>
                   <span
-                    className="text-[10px] font-semibold text-white/70 tracking-[2px] uppercase"
+                    className="text-[10px] font-semibold text-white/50 tracking-[2px] uppercase"
                     style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
                   >
                     {solution.title}
