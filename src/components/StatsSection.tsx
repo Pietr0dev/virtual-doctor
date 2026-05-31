@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Star, Users, Clock, Activity, Building2, MapPin } from 'lucide-react'
@@ -22,6 +22,7 @@ export default function StatsSection() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement[]>([])
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -124,7 +125,14 @@ export default function StatsSection() {
               <div
                 key={stat.label}
                 ref={(el) => { if (el) cardsRef.current[i] = el }}
-                className="shrink-0 w-[180px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5 hover:bg-white/10 transition-colors duration-300"
+                className="shrink-0 w-[180px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5 hover:bg-white/10"
+                style={{
+                  transform: hoveredIndex === i ? 'translateY(-7px)' : 'translateY(0)',
+                  boxShadow: hoveredIndex === i ? '0 20px 40px rgba(0,0,0,0.28)' : 'none',
+                  transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s',
+                }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className={`w-9 h-9 rounded-lg ${stat.iconBg} flex items-center justify-center mb-4`}>
                   <Icon size={18} className={stat.iconColor} />
