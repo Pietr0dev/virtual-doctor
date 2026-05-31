@@ -4,7 +4,7 @@ import { Shield, BarChart3, Users, Clock } from 'lucide-react'
 import ClientLogos from '@/components/ClientLogos'
 import StatsSection from '@/components/StatsSection'
 import Differentiators from '@/components/Differentiators'
-import SolutionsGrid from '@/components/SolutionsGrid'
+import SolutionsSection from '@/components/SolutionsSection'
 import SectorsGrid from '@/components/SectorsGrid'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
 import CTABanner from '@/components/CTABanner'
@@ -119,7 +119,7 @@ export default function HomePage() {
 
       <StatsSection />
 
-      <SolutionsGrid />
+      <SolutionsSection />
 
       <SectorsGrid />
 
