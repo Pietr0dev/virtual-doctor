@@ -37,7 +37,7 @@ export default function ClientLogos() {
           {[...clients, ...clients].map((client, i) => (
             <div
               key={`${client.name}-${i}`}
-              className="flex items-center justify-center shrink-0 w-40 sm:w-48 h-16 mx-4 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-100 px-4"
+              className="flex items-center justify-center shrink-0 w-40 sm:w-48 min-h-16 mx-4 rounded-lg bg-white/80 backdrop-blur-sm border border-gray-100 px-4 py-3"
             >
               <span className="text-sm font-semibold text-gray-600 text-center leading-tight">
                 {client.name}

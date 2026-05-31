@@ -48,7 +48,7 @@ export default function HomePage() {
                   Ver casos de éxito
                 </Link>
               </div>
-              <div className="mt-12 grid grid-cols-3 gap-8 border-t border-gray-100 pt-8">
+              <div className="mt-12 flex flex-wrap gap-x-8 gap-y-4 border-t border-gray-100 pt-8">
                 {[
                   { icon: Clock, label: '3 min espera promedio' },
                   { icon: BarChart3, label: '92% satisfacción' },

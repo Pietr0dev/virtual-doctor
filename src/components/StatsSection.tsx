@@ -21,7 +21,7 @@ export default function StatsSection() {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
           Datos que nos <span className="text-primary">respaldan</span>
         </h2>
-        <p className="mt-3 text-base text-gray-400 max-w-lg mx-auto">
+        <p className="mt-3 text-sm sm:text-base text-gray-400 max-w-lg mx-auto">
           Resultados que hablan por sí solos. Conocé el impacto de nuestra plataforma.
         </p>
 
@@ -31,7 +31,7 @@ export default function StatsSection() {
             return (
               <div
                 key={stat.label}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10"
+                className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-4 sm:p-6 hover:bg-white/10"
                 style={{
                   transform: hoveredIndex === i ? 'translateY(-7px)' : 'translateY(0)',
                   boxShadow: hoveredIndex === i ? '0 20px 40px rgba(0,0,0,0.28)' : 'none',
@@ -40,20 +40,20 @@ export default function StatsSection() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className={`w-12 h-12 rounded-xl ${stat.iconBg} flex items-center justify-center mb-4 mx-auto`}>
-                  <Icon size={22} className={stat.iconColor} />
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${stat.iconBg} flex items-center justify-center mb-3 sm:mb-4 mx-auto`}>
+                  <Icon size={20} className={`sm:size-[22px] ${stat.iconColor}`} />
                 </div>
                 <div className="flex items-baseline justify-center gap-0.5">
                   <span
                     className="font-extrabold text-white"
-                    style={{ fontSize: '38px', letterSpacing: '-1px', lineHeight: 1 }}
+                    style={{ fontSize: 'clamp(28px, 5vw, 38px)', letterSpacing: '-1px', lineHeight: 1 }}
                   >
                     {stat.value}
                   </span>
                   {stat.suffix && (
                     <span
                       className="font-semibold text-gray-400"
-                      style={{ fontSize: stat.label === 'Valoración de pacientes' ? '20px' : '38px', letterSpacing: '-1px', lineHeight: 1 }}
+                      style={{ fontSize: stat.label === 'Valoración de pacientes' ? 'clamp(14px, 3vw, 20px)' : 'clamp(28px, 5vw, 38px)', letterSpacing: '-1px', lineHeight: 1 }}
                     >
                       {stat.suffix}
                     </span>
@@ -62,14 +62,14 @@ export default function StatsSection() {
                 {stat.unit && (
                   <div
                     className="text-gray-400 font-medium mt-0.5 text-center"
-                    style={{ fontSize: '24px', lineHeight: 1.1 }}
+                    style={{ fontSize: 'clamp(18px, 3.5vw, 24px)', lineHeight: 1.1 }}
                   >
                     {stat.unit}
                   </div>
                 )}
                 <div
-                  className="text-gray-500 mt-2 leading-tight text-center"
-                  style={{ fontSize: '11.5px' }}
+                  className="text-gray-400 sm:text-gray-500 mt-1 sm:mt-2 leading-tight text-center"
+                  style={{ fontSize: 'clamp(10px, 2vw, 11.5px)' }}
                 >
                   {stat.label}
                 </div>
@@ -79,7 +79,7 @@ export default function StatsSection() {
         </div>
 
         <div className="mt-10">
-          <div className="inline-flex items-center gap-3 bg-white/5 rounded-2xl border border-white/10 px-6 py-4"
+          <div className="inline-flex items-center gap-3 bg-white/5 rounded-2xl border border-white/10 px-5 sm:px-6 py-3 sm:py-4"
             style={{
               transform: hoveredIndex === -1 ? 'translateY(-7px)' : 'translateY(0)',
               boxShadow: hoveredIndex === -1 ? '0 20px 40px rgba(0,0,0,0.28)' : 'none',
@@ -90,13 +90,13 @@ export default function StatsSection() {
           >
             <div
               className="font-extrabold text-white"
-              style={{ fontSize: '38px', letterSpacing: '-1px', lineHeight: 1 }}
+              style={{ fontSize: 'clamp(28px, 5vw, 38px)', letterSpacing: '-1px', lineHeight: 1 }}
             >
               +40
             </div>
             <div
-              className="text-gray-500 leading-tight text-left"
-              style={{ fontSize: '11.5px' }}
+              className="text-gray-400 sm:text-gray-500 leading-tight text-left"
+              style={{ fontSize: 'clamp(10px, 2vw, 11.5px)' }}
             >
               Organizaciones confían<br />en nosotros
             </div>

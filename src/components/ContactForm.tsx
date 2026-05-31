@@ -37,7 +37,7 @@ export default function ContactForm() {
             id="name"
             type="text"
             required
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="Tu nombre"
           />
         </div>
@@ -49,7 +49,7 @@ export default function ContactForm() {
             id="organization"
             type="text"
             required
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="Nombre de la organización"
           />
         </div>
@@ -62,7 +62,7 @@ export default function ContactForm() {
         <select
           id="sector"
           required
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+          className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
         >
           <option value="">Seleccioná un sector</option>
           <option value="municipio">Municipio</option>
@@ -83,7 +83,7 @@ export default function ContactForm() {
             id="email"
             type="email"
             required
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="tu@email.com"
           />
         </div>
@@ -94,7 +94,7 @@ export default function ContactForm() {
           <input
             id="phone"
             type="tel"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="+54 11 1234-5678"
           />
         </div>
@@ -108,7 +108,7 @@ export default function ContactForm() {
           id="message"
           required
           rows={4}
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
+          className="w-full rounded-xl border border-gray-200 px-4 py-3.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
           placeholder="Contanos cómo podemos ayudarte..."
         />
       </div>

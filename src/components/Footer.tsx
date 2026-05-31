@@ -35,7 +35,7 @@ export default function Footer() {
                 { label: 'Contacto', href: '/contacto' },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-primary transition-colors">
+                  <Link href={item.href} className="block py-1.5 text-sm text-gray-400 hover:text-primary transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -53,7 +53,7 @@ export default function Footer() {
                 { label: 'Empresas', href: '/sectores/empresas' },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-gray-400 hover:text-primary transition-colors">
+                  <Link href={item.href} className="block py-1.5 text-sm text-gray-400 hover:text-primary transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -71,7 +71,7 @@ export default function Footer() {
               href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-primary transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-lg text-gray-400 hover:text-primary hover:bg-white/5 transition-colors"
               aria-label="Instagram"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -82,7 +82,7 @@ export default function Footer() {
               href={siteConfig.social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-primary transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-lg text-gray-400 hover:text-primary hover:bg-white/5 transition-colors"
               aria-label="LinkedIn"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

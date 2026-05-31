@@ -127,7 +127,7 @@ export default function Header() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden relative z-50 p-2.5 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors"
+            className="lg:hidden relative z-50 p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors"
             aria-label="Menú"
           >
             {open ? <X size={22} /> : <Menu size={22} />}

@@ -55,7 +55,7 @@ export default function SolutionsSection() {
 
   return (
     <section ref={sectionRef} className="bg-cream py-20 sm:py-28 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-14 flex items-end justify-between">
           <div>
             <span className="text-sm font-semibold text-primary tracking-widest uppercase">
@@ -87,8 +87,49 @@ export default function SolutionsSection() {
           </Link>
         </div>
 
+        <div className="grid gap-6 sm:grid-cols-2 lg:hidden">
+          {solutions.slice(0, 4).map((solution, i) => {
+            const Icon = solutionIcons[i]
+            return (
+              <div
+                key={solution.title}
+                className="flex flex-col sm:flex-row rounded-2xl bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div className="relative w-full sm:w-48 h-44 sm:h-auto shrink-0 overflow-hidden bg-secondary">
+                  <Image
+                    src={solution.image}
+                    alt={solution.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-3 left-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center">
+                      <Icon size={16} className="text-white" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 p-5">
+                  <h3 className="text-lg font-bold text-secondary mb-2">{solution.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-3">{solution.description}</p>
+                  <ul className="space-y-1.5">
+                    {solution.benefits.map((benefit) => (
+                      <li key={benefit} className="flex items-center gap-2 text-xs text-gray-500">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-primary shrink-0">
+                          <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
         <div
-          className="flex gap-2 h-[480px]"
+          className="hidden lg:flex gap-2 h-[480px]"
           onMouseLeave={() => setActiveIndex(0)}
         >
           {solutions.slice(0, 4).map((solution, i) => {
