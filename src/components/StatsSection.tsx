@@ -3,12 +3,18 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { metrics } from '@/lib/data'
-import { Activity, Users, Clock, MapPin, Building2 } from 'lucide-react'
+import { Star, Users, Clock, Activity, Building2, MapPin } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const icons = [Activity, Users, Clock, MapPin, Building2]
+const stats = [
+  { value: '4.8', unit: null, suffix: '/5', icon: Star, label: 'Valoración de pacientes', iconBg: 'bg-amber-400/20', iconColor: 'text-amber-400' },
+  { value: '4', unit: 'millones', suffix: '+', icon: Users, label: 'Personas alcanzadas', iconBg: 'bg-primary/20', iconColor: 'text-primary' },
+  { value: '3', unit: 'min', suffix: '', icon: Clock, label: 'Tiempo promedio de espera', iconBg: 'bg-accent/20', iconColor: 'text-accent' },
+  { value: '92', unit: '%', suffix: '', icon: Activity, label: 'Satisfacción de pacientes', iconBg: 'bg-primary/20', iconColor: 'text-primary' },
+  { value: '25', unit: null, suffix: '+', icon: MapPin, label: 'Municipios activos', iconBg: 'bg-accent/20', iconColor: 'text-accent' },
+  { value: '10', unit: null, suffix: '+', icon: Building2, label: 'Obras sociales asociadas', iconBg: 'bg-primary/20', iconColor: 'text-primary' },
+]
 
 export default function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -50,7 +56,7 @@ export default function StatsSection() {
         },
       })
 
-      const animation = gsap.to(track, {
+      gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth),
         ease: 'none',
         scrollTrigger: {
@@ -61,8 +67,7 @@ export default function StatsSection() {
           scrub: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const progressVal = self.progress
-            progress.style.transform = `scaleX(${progressVal})`
+            progress.style.transform = `scaleX(${self.progress})`
           },
         },
       })
@@ -100,41 +105,77 @@ export default function StatsSection() {
       </div>
 
       <div className="h-screen flex items-center">
-        <div ref={trackRef} className="flex items-center gap-16 px-16 will-change-transform">
-          <div className="shrink-0 w-[500px]">
+        <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
+          <div className="shrink-0 w-[420px]">
             <h2
               ref={titleRef}
-              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight"
             >
               Datos que nos respaldan
             </h2>
-            <p className="mt-6 text-lg text-gray-400 max-w-sm">
+            <p className="mt-4 text-base text-gray-400 max-w-sm">
               Resultados que hablan por sí solos. Conocé el impacto de nuestra plataforma.
             </p>
           </div>
 
-          {metrics.map((metric, i) => {
-            const Icon = icons[i] || Activity
+          {stats.map((stat, i) => {
+            const Icon = stat.icon
             return (
               <div
-                key={metric.label}
+                key={stat.label}
                 ref={(el) => { if (el) cardsRef.current[i] = el }}
-                className="shrink-0 w-72 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:bg-white/10 transition-colors duration-300"
+                className="shrink-0 w-[180px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5 hover:bg-white/10 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6">
-                  <Icon size={24} className="text-primary" />
+                <div className={`w-9 h-9 rounded-lg ${stat.iconBg} flex items-center justify-center mb-4`}>
+                  <Icon size={18} className={stat.iconColor} />
                 </div>
-                <div className="text-4xl sm:text-5xl font-extrabold text-white mb-2">
-                  {metric.value}
+                <div className="flex items-baseline gap-0.5">
+                  <span
+                    className="font-extrabold text-white"
+                    style={{ fontSize: '38px', letterSpacing: '-1px', lineHeight: 1 }}
+                  >
+                    {stat.value}
+                  </span>
+                  {stat.suffix && (
+                    <span
+                      className="font-semibold text-gray-400"
+                      style={{ fontSize: stat.label === 'Valoración de pacientes' ? '20px' : '38px', letterSpacing: '-1px', lineHeight: 1 }}
+                    >
+                      {stat.suffix}
+                    </span>
+                  )}
                 </div>
-                <div className="text-sm text-gray-400 leading-relaxed">{metric.label}</div>
+                {stat.unit && (
+                  <div
+                    className="text-gray-400 font-medium mt-0.5"
+                    style={{ fontSize: '24px', lineHeight: 1.1 }}
+                  >
+                    {stat.unit}
+                  </div>
+                )}
+                <div
+                  className="text-gray-500 mt-2 leading-tight"
+                  style={{ fontSize: '11.5px' }}
+                >
+                  {stat.label}
+                </div>
               </div>
             )
           })}
 
-          <div className="shrink-0 w-[300px] pl-8">
-            <div className="text-6xl font-extrabold text-white/10">+40</div>
-            <div className="mt-2 text-lg text-gray-500">Organizaciones confían en nosotros</div>
+          <div className="shrink-0 w-[180px] pl-4">
+            <div
+              className="font-extrabold text-white/10"
+              style={{ fontSize: '38px', letterSpacing: '-1px', lineHeight: 1 }}
+            >
+              +40
+            </div>
+            <div
+              className="text-gray-500 mt-1 leading-tight"
+              style={{ fontSize: '11.5px' }}
+            >
+              Organizaciones confían en nosotros
+            </div>
           </div>
         </div>
       </div>
