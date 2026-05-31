@@ -107,10 +107,10 @@ export default function StatsSection() {
 
       <div className="h-[75vh] flex items-center">
         <div ref={trackRef} className="flex items-center gap-10 px-16 will-change-transform">
-          <div className="shrink-0 w-[440px]">
+          <div className="shrink-0">
             <h2
               ref={titleRef}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight whitespace-nowrap"
             >
               Datos que nos respaldan
             </h2>
